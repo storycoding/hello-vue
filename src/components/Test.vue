@@ -34,19 +34,25 @@
   		</div>
 
   		<leComponent></leComponent>
+  		<div>
+  			<label>Emissions from child template: </label><div v-on:childEmission="console.log('click')"></div>
+  			<Emitter></Emitter>
+  		</div>
 	</div>
 </template>
 
 <script>
 
 import Vue from 'vue';
+
 import NestedTest from './NestedTest'
+import Emitter from './Emitter'
 
 Vue.component('leComponent', { template: '<span> this is a Vue.component made in the Test.vue script</span>' })
 
 export default {
   name: 'Test',
-  components: { NestedTest },
+  components: { NestedTest , Emitter },
 
    methods: {
   	handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
@@ -54,12 +60,17 @@ export default {
 	alertContent : (event) => alert(event.target.value)
   },
 
+  created: function() {
+    console.log('Test component created and rendered')
+  },
+
   computed : { // uses caching for repeated arguments or dependencies that remain unchanged
   	dynamicText: function() {return this.user.first + ' ' + this.user.last } // do not use arrow functions for this
   },
 
-  data() {
+  data() { // must be a function, so that each instance can maintain an independent copy of the returned data object
   	return {
+  		count: 0,
   		user: {
   			first: 'Nuno',
   			last: 'Neves'
