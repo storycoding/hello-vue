@@ -1,35 +1,38 @@
 <template>
  	<div>
  		<div>{{title}}</div>
-  		<spam v-if="visible">yes!</spam>
-  		<spam v-else>no!</spam>
+  		<span v-if="visible">yes!</span>
+  		<span v-else>no!</span>
   		<p v-for='todo in todos'>{{todo}}</p>
   		<p v-for='place in places'>{{place.name}}</p>
-  		<p v-bind:class='{blue: isBlue}'>this should have the class blue</p>
-  		<p v-bind:style='{color: color}'>this should just be red by inline</p>
+  		<p v-bind:class='{blue: isBlue}'>bind class blue with boolean</p>
+  		<p v-bind:style='{color: color}'>bind style color:'red'</p>
   		<leComponent></leComponent>
+  		<NestedTest></NestedTest>
 	</div>
 </template>
 
 <script>
 
 import Vue from 'vue';
+import NestedTest from './NestedTest'
 
-Vue.component('leComponent', { template: '<span>this is a template component</span>' })
+Vue.component('leComponent', { template: '<span>this is a Vue.component made in the Test.vue script</span>' })
 
 export default {
-  name: 'Man',
+  name: 'Test',
+  components: { NestedTest },
   data() {
   	return {
   		title: 'Nuno tries vue',
   		visible: true,
   		todos: [
-  			'learn basic vuejs',
-  			'get some kombutchas for the homies'
+  			'array (for let) todos[0]',
+  			'array (for let) todos[1]'
   		],
   		places: [
-  			{ name: 'home' },
-  			{ name: 'work'}
+  			{ name: 'object (for in) places[0]' },
+  			{ name: 'object (for in) places[1]'}
   		],
   		isBlue: true,
   		color: 'red'
