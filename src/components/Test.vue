@@ -13,10 +13,10 @@
  		</div>
  		<p>{{boundText}}</p>
  		<div>
- 			<button v-on:click='handleClick'>logs this innerHTML</button>
+ 			<label>logs button's innerHTML</label> <button v-on:click='handleClick'>this will be logged</button>
  		</div>
  		<div>
- 			<button v-on:click="handleClick('bound content')">logs bound content</button>
+ 			<label>logs bound content</label> <button v-on:click="handleClick('I am the bound content!')">something else will be logged</button>
  		</div>
  		<div>
  			<input type="text" v-on:keyup='keypress'>
