@@ -1,19 +1,26 @@
 <template>
- 	<div id="NestedTest">This is a nested component from a separate file</div>
+ 	<h1 id="NestedTest">{{title}}</h1>
 </template>
 
 <script>
 
 	export default { 
-		name: 'NestedTest'
+		name: 'NestedTest',
+		props: {
+	  	title : {
+	  		type: String,
+	  		default: 'Nuno tries Vue.js'
+	  	}
+	  }
+
 	}
-	
+
 </script>>
 
 
 <style scoped>
 
-	div {
+	h1 {
 		color: green;
 	}
 
