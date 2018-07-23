@@ -7,6 +7,7 @@
   		<p v-for='place in places'>{{place.name}}</p>
   		<p v-bind:class='{blue: isBlue}'>bind class blue with boolean</p>
   		<p v-bind:style='{color: color}'>bind style color:'red'</p>
+ 		<p v-text='text'></p>
   		<leComponent></leComponent>
   		<NestedTest></NestedTest>
 	</div>
@@ -17,7 +18,7 @@
 import Vue from 'vue';
 import NestedTest from './NestedTest'
 
-Vue.component('leComponent', { template: '<span>this is a Vue.component made in the Test.vue script</span>' })
+Vue.component('leComponent', { template: '<span> this is a Vue.component made in the Test.vue script</span>' })
 
 export default {
   name: 'Test',
@@ -35,7 +36,8 @@ export default {
   			{ name: 'object (for in) places[1]'}
   		],
   		isBlue: true,
-  		color: 'red'
+  		color: 'red',
+  		text: 'text sourced via v-text'
   	}
   }
 }
