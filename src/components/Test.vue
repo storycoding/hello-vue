@@ -8,6 +8,8 @@
   		<p v-bind:class='{blue: isBlue}'>bind class blue with boolean</p>
   		<p v-bind:style='{color: color}'>bind style color:'red'</p>
  		<p v-text='text'></p>
+ 		<input type="text" v-model="boundText"></input>
+ 		<p>{{boundText}}</p>
   		<leComponent></leComponent>
   		<NestedTest></NestedTest>
 	</div>
@@ -37,7 +39,8 @@ export default {
   		],
   		isBlue: true,
   		color: 'red',
-  		text: 'text sourced via v-text'
+  		text: 'text sourced via v-text',
+  		boundText : 'this text is bound to an input via v-model'
   	}
   }
 }
