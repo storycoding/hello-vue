@@ -54,7 +54,7 @@ export default {
 	alertContent : (event) => alert(event.target.value)
   },
 
-  computed : {
+  computed : { // uses caching for repeated arguments or dependencies that remain unchanged
   	dynamicText: function() {return this.user.first + ' ' + this.user.last } // do not use arrow functions for this
   },
 
