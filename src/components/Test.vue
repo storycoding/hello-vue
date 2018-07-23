@@ -21,6 +21,9 @@
  		<div>
  			<input type="text" v-on:keyup='keypress'>
  		</div>
+ 		<div>
+ 			<input type="text" v-on:keyup.enter='alertContent'>
+ 		</div>
   		<leComponent></leComponent>
   		<NestedTest></NestedTest>
 	</div>
@@ -53,7 +56,8 @@ export default {
   		text: 'text sourced via v-text',
   		boundText : 'this text is bound to an input via v-model',
   		handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
-  		keypress : (event) => console.log(event.target.value)
+  		keypress : (event) => console.log(event.target.value),
+  		alertContent : (event ) => alert(event.target.value)
   	}
   }
 }
