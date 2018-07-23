@@ -30,7 +30,7 @@
  			<br>
  			<label>last: </label> <input type="text" v-model="user.last"></input>
  			<br>
-  			<h1>{{dynamicText()}}</h1>
+  			<h1>{{dynamicText}}</h1>
   		</div>
 
   		<leComponent></leComponent>
@@ -51,8 +51,11 @@ export default {
    methods: {
   	handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
 	keypress : (event) => console.log(event.target.value),
-	alertContent : (event) => alert(event.target.value),
-	dynamicText() { return this.user.first + ' ' + this.user.last }
+	alertContent : (event) => alert(event.target.value)
+  },
+
+  computed : {
+  	dynamicText: function() {return this.user.first + ' ' + this.user.last } // do not use arrow functions for this
   },
 
   data() {
