@@ -2,8 +2,8 @@
  	<div id="NestedTest">This is a nested component from a separate file</div>
 </template>
 
-<style>
-	#NestedTest {
+<style scoped>
+	div {
 		color: green;
 	}
 </style>
