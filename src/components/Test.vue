@@ -24,6 +24,7 @@
  		<div>
  			<input type="text" v-on:keyup.enter='alertContent'>
  		</div>
+ 		<h1>{{dynamicText}}</h1>
   		<leComponent></leComponent>
   		<NestedTest></NestedTest>
 	</div>
@@ -54,11 +55,14 @@ export default {
   		isBlue: true,
   		color: 'red',
   		text: 'text sourced via v-text',
-  		boundText : 'this text is bound to an input via v-model',
-  		handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
-  		keypress : (event) => console.log(event.target.value),
-  		alertContent : (event ) => alert(event.target.value)
+  		boundText : 'this text is bound to an input via v-model'
   	}
+  },
+  methods: {
+  	handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
+	keypress : (event) => console.log(event.target.value),
+	alertContent : (event) => alert(event.target.value),
+	// computed : { dynamicText: () => this.text + ' & ' + this.boundText }
   }
 }
 </script>
