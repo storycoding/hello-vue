@@ -8,8 +8,19 @@
   		<p v-bind:class='{blue: isBlue}'>bind class blue with boolean</p>
   		<p v-bind:style='{color: color}'>bind style color:'red'</p>
  		<p v-text='text'></p>
- 		<input type="text" v-model="boundText"></input>
+ 		<div>
+ 			<input type="text" v-model="boundText"></input>
+ 		</div>
  		<p>{{boundText}}</p>
+ 		<div>
+ 			<button v-on:click='handleClick'>logs this innerHTML</button>
+ 		</div>
+ 		<div>
+ 			<button v-on:click="handleClick('bound content')">logs bound content</button>
+ 		</div>
+ 		<div>
+ 			<input type="text" v-on:keyup='keypress'>
+ 		</div>
   		<leComponent></leComponent>
   		<NestedTest></NestedTest>
 	</div>
@@ -40,7 +51,9 @@ export default {
   		isBlue: true,
   		color: 'red',
   		text: 'text sourced via v-text',
-  		boundText : 'this text is bound to an input via v-model'
+  		boundText : 'this text is bound to an input via v-model',
+  		handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
+  		keypress : (event) => console.log(event.target.value)
   	}
   }
 }
