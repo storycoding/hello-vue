@@ -1,32 +1,39 @@
 <template>
  	<div>
- 		<div>{{title}}</div>
-  		<span v-if="visible">yes!</span>
-  		<span v-else>no!</span>
-  		<p v-for='todo in todos'>{{todo}}</p>
-  		<p v-for='place in places'>{{place.name}}</p>
-  		<p v-bind:class='{blue: isBlue}'>bind class blue with boolean</p>
-  		<p v-bind:style='{color: color}'>bind style color:'red'</p>
- 		<p v-text='text'></p>
+ 		<NestedTest title='Nuno knows Vue.js'></NestedTest>
+ 		<div>
+ 			<span v-if="visible">yes!</span>
+	  		<span v-else>no!</span>
+	  		<p v-for='todo in todos'>{{todo}}</p>
+	  		<p v-for='place in places'>{{place.name}}</p>
+	  		<p v-bind:class='{blue: isBlue}'>bind class blue with boolean</p>
+	  		<p v-bind:style='{color: color}'>bind style color:'red'</p>
+	 		<p v-text='text'></p>
+ 		</div>
  		<div>
  			<input type="text" v-model="boundText"></input>
- 		</div>
- 		<p>{{boundText}}</p>
- 		<div>
- 			<label>logs button's innerHTML</label> <button v-on:click='handleClick'>this will be logged</button>
+ 			<p>{{boundText}}</p>
  		</div>
  		<div>
- 			<label>logs bound content</label> <button v-on:click="handleClick('I am the bound content!')">something else will be logged</button>
+ 			<label>logs button's innerHTML: </label> <button v-on:click='handleClick'>this will be logged</button>
  		</div>
  		<div>
- 			<input type="text" v-on:keyup='keypress'>
+ 			<label>logs bound content: </label> <button v-on:click="handleClick('I am the bound content!')">something else will be logged</button>
  		</div>
  		<div>
- 			<input type="text" v-on:keyup.enter='alertContent'>
+ 			<label>log on keyup: </label> <input type="text" v-on:keyup='keypress'>
+ 			<br>
+ 			<label>alert on keyup.enter: </label> <input type="text" v-on:keyup.enter='alertContent'>
  		</div>
- 		<h1>{{dynamicText}}</h1>
+  		<div>
+ 			<label>first: </label> <input type="text" v-model="user.first"></input>
+ 			<br>
+ 			<label>last: </label> <input type="text" v-model="user.last"></input>
+ 			<br>
+  			<h1>{{dynamicText()}}</h1>
+  		</div>
+
   		<leComponent></leComponent>
-  		<NestedTest></NestedTest>
 	</div>
 </template>
 
@@ -40,9 +47,20 @@ Vue.component('leComponent', { template: '<span> this is a Vue.component made in
 export default {
   name: 'Test',
   components: { NestedTest },
+
+   methods: {
+  	handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
+	keypress : (event) => console.log(event.target.value),
+	alertContent : (event) => alert(event.target.value),
+	dynamicText() { return this.user.first + ' ' + this.user.last }
+  },
+
   data() {
   	return {
-  		title: 'Nuno tries vue',
+  		user: {
+  			first: 'Nuno',
+  			last: 'Neves'
+  		},
   		visible: true,
   		todos: [
   			'array (for let) todos[0]',
@@ -57,12 +75,6 @@ export default {
   		text: 'text sourced via v-text',
   		boundText : 'this text is bound to an input via v-model'
   	}
-  },
-  methods: {
-  	handleClick : (content) => console.log( (content.target ? content.target.innerHTML : content ) ),
-	keypress : (event) => console.log(event.target.value),
-	alertContent : (event) => alert(event.target.value),
-	// computed : { dynamicText: () => this.text + ' & ' + this.boundText }
   }
 }
 </script>
