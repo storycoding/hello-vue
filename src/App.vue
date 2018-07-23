@@ -25,4 +25,9 @@ export default {
   color: blue;
 }
 
+div {
+  border-style: solid;
+  border-width: 1px;
+}
+
 </style>
