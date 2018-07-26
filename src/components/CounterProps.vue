@@ -10,19 +10,17 @@
 	
 	export default {
 		name: 'Counter',
-
-		data: function() {
-			return ({
-				count : 0
-			})
+		props: {
+			count : {
+				type : Number,
+				default	: 0
+			}	
 		},
-		
 		methods: {
 			increment: function() {
 				this.count ++
 			},
 			decrement: function() {
-				if (this.count === 0) { return }
 				this.count --
 			}
 		}
