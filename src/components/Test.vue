@@ -60,7 +60,8 @@ export default {
 	alertContent : (event) => alert(event.target.value)
   },
 
-  created: function() {
+  created: function() { // Called synchronously after the instance is created
+    // just like componentDidMount
     console.log('Test component created and rendered')
   },
 
