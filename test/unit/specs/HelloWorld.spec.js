@@ -21,11 +21,11 @@ describe('HelloWorld.vue', () => {
 
 		const rendered = render(HelloWorld);
 
-		// get all the methods and properties of rendered component
-		// for (var key in rendered) {
-		// 	console.log(key + ': ' + rendered[key]);
-		// 	console.log('=================================================')
-		// }
+		//get all the methods and properties of rendered component
+		for (var key in rendered) {
+			console.log(key + ': ' + rendered[key]);
+			console.log('=================================================')
+		}
 
 		expect(rendered.getAllByText('Essential Links'))
 	});
@@ -33,13 +33,24 @@ describe('HelloWorld.vue', () => {
 
 
 describe( 'Counter.vue', () => {
+
+	const rendered = render(Counter);
+
 	it('Should exist', () => {
-		const rendered = render(Counter);
 		expect(rendered.getByTestId('count'));
 	});
 
 	it('Should render with the intial value of 0', () => {
-		const rendered = render(Counter);
+		expect(rendered.getByTestId('count').textContent).toBe('0');
+	});
+
+	it('Should increment when increment button is clicked', () => {
+		Simulate.click(rendered.getByTestId('increment'));
+		expect(rendered.getByTestId('count').textContent).toBe('1');
+	});
+
+	it('Should decrement when decrement button is clicked', () => {
+		Simulate.click(rendered.getByTestId('decrement'));
 		expect(rendered.getByTestId('count').textContent).toBe('0');
 	});
 
