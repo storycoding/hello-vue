@@ -10,12 +10,13 @@
 	
 	export default {
 		name: 'Counter',
-		props: {
-			count : {
-				type : Number,
-				default	: 0
-			}	
+
+		data: function() {
+			return ({
+				count : 0
+			})
 		},
+		
 		methods: {
 			increment: function() {
 				this.count ++
